@@ -13,4 +13,13 @@ app.use(express.json());
 
 app.use("/api/users", userRouter);
 
+// Api Endpoint NotFound Handler
+
+app.use((req, res) => {
+  res.status(404).json({
+    status: "fail",
+    message: "Api Endpoint Not Found",
+  });
+});
+
 export default app;
