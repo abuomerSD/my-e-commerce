@@ -83,7 +83,10 @@ export const loginUser = async (req, res) => {
             expiresIn,
           }
         );
-        res.cookie("jwt", token);
+        res.cookie("jwt", token, {
+          maxAge: expiresIn,
+          httpOnly: true,
+        });
 
         return res.status(200).json({
           status: "success",
@@ -91,6 +94,11 @@ export const loginUser = async (req, res) => {
             user,
             token,
           },
+        });
+      } else {
+        return res.status(400).json({
+          status: "fail",
+          message: "password not correct",
         });
       }
     } else {
