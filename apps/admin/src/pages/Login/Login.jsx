@@ -1,11 +1,9 @@
-import axios from "axios";
 import { useState } from "react";
+import http from "../../services/http";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const url = "http://localhost:5000/api/users/login";
 
   const handleLogin = async (e) => {
     try {
@@ -20,20 +18,8 @@ const Login = () => {
         return;
       }
 
-      await axios
-        .post(
-          url,
-          {
-            username,
-            password,
-          },
-          {
-            withCredentials: true,
-          }
-        )
-        .then((res) => {
-          console.log(res);
-        });
+      const res = await http.post("/users/login", { username, password });
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
