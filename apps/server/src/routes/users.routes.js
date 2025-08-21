@@ -10,9 +10,9 @@ import {
 } from "../controllers/users.controller.js";
 import { userValidator } from "../middlewares/validate.js";
 
-router.route("/").get(findAllUsers).post(userValidator, registerUser);
+router.route("/users").get(findAllUsers).post(userValidator, registerUser);
 router
-  .route("/:id")
+  .route("/users/:id")
   .get(findUserById)
   .put(userValidator, updateUserById)
   .delete(deleteUserById);

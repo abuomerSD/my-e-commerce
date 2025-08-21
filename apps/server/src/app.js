@@ -12,7 +12,7 @@ app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 
-app.use("/api/users", userRouter);
+app.use("/api/auth", userRouter);
 
 // Api Endpoint NotFound Handler
 
